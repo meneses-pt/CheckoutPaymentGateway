@@ -39,7 +39,7 @@ namespace CheckoutPaymentGateway.Controllers
 
                 return StatusCode((int) HttpStatusCode.OK, response);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode((int) HttpStatusCode.BadRequest);
             }
@@ -63,7 +63,7 @@ namespace CheckoutPaymentGateway.Controllers
 
                 return StatusCode((int) HttpStatusCode.OK, response);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode((int) HttpStatusCode.BadRequest);
             }
