@@ -10,6 +10,9 @@ namespace CheckoutPaymentGatewayTest
 {
     public class PaymentGatewayTest
     {
+        /// <summary>
+        /// Tests processing a valid payment
+        /// </summary>
         [Fact]
         public void ProcessValidPayment()
         {
@@ -35,6 +38,9 @@ namespace CheckoutPaymentGatewayTest
             Assert.Equal(paymentRequest.MaskCardNumber(), savedResponse.Request.CardNumber);
         }
 
+        /// <summary>
+        /// Tests processing payment with negative amount
+        /// </summary>
         [Fact]
         public void ProcessInvalidPayment1()
         {
@@ -59,6 +65,9 @@ namespace CheckoutPaymentGatewayTest
             Assert.Equal(paymentRequest, savedResponse.Request);
         }
 
+        /// <summary>
+        /// Tests processing payment with no card number
+        /// </summary>
         [Fact]
         public void ProcessInvalidPayment2()
         {
@@ -83,6 +92,9 @@ namespace CheckoutPaymentGatewayTest
             Assert.Equal(paymentRequest, savedResponse.Request);
         }
 
+        /// <summary>
+        /// Tests processing null payment
+        /// </summary>
         [Fact]
         public void ProcessInvalidPayment3()
         {

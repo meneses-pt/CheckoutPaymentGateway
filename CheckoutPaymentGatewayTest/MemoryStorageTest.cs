@@ -7,6 +7,9 @@ namespace CheckoutPaymentGatewayTest
 {
     public class MemoryStorageTest
     {
+        /// <summary>
+        /// Tests saving an object to the storage and checking the returned one is the same
+        /// </summary>
         [Fact]
         public void SaveAndReturn()
         {
