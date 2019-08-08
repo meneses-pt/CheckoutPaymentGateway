@@ -28,9 +28,24 @@ namespace CheckoutPaymentGateway.Models
         public string CVV { get; set; }
 
         /// <inheritdoc />
-        public void MaskCardNumber()
+        public string MaskCardNumber()
         {
-            CardNumber = Regex.Replace(CardNumber.Substring(0, CardNumber.Length - 4), "\\d", "*") + CardNumber.Substring(CardNumber.Length - 4, 4);
+            if (CardNumber == null)
+            {
+                return null;
+            }
+            else if (CardNumber.Length <= 4)
+            {
+                return Regex.Replace(CardNumber, "\\d", "*");
+            }
+            else
+            {
+                return Regex.Replace(
+                                 CardNumber.Substring(0, CardNumber.Length - 4),
+                                 "\\d",
+                                 "*") +
+                             CardNumber.Substring(CardNumber.Length - 4, 4);
+            }
         }
     }
 }

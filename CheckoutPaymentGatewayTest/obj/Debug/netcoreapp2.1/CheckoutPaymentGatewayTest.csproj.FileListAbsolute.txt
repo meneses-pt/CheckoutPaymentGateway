@@ -1,0 +1,17 @@
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\xunit.runner.reporters.netcoreapp10.dll
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\xunit.runner.utility.netcoreapp10.dll
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.deps.json
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.runtimeconfig.json
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.runtimeconfig.dev.json
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.dll
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.pdb
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\CheckoutPaymentGateway.dll
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\bin\Debug\netcoreapp2.1\CheckoutPaymentGateway.pdb
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\obj\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.csprojAssemblyReference.cache
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\obj\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.csproj.CoreCompileInputs.cache
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\obj\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.AssemblyInfoInputs.cache
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\obj\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.AssemblyInfo.cs
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\obj\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.csproj.CopyComplete
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\obj\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.dll
+C:\GitHub\CheckoutPaymentGateway\CheckoutPaymentGatewayTest\obj\Debug\netcoreapp2.1\CheckoutPaymentGatewayTest.pdb

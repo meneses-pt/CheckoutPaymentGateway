@@ -56,6 +56,6 @@
         /// <summary>
         /// Masks the credit card number.
         /// </summary>
-        void MaskCardNumber();
+        string MaskCardNumber();
     }
 }

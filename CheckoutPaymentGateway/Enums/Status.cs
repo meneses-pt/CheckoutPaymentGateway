@@ -10,6 +10,8 @@ namespace CheckoutPaymentGateway.Enums
         [EnumMember(Value = "Authorized")]
         Authorized,
         [EnumMember(Value = "Declined")]
-        Declined
+        Declined,
+        [EnumMember(Value = "Expired")]
+        Expired
     }
 }

@@ -33,7 +33,10 @@ namespace CheckoutPaymentGateway.BL
         {
             var bankResponse = _bank.ProcessPayment(request);
             var paymentInfo = new PaymentInfo(request, bankResponse);
-            _storage.SaveObject(paymentInfo.Response.Id, paymentInfo);
+            if (bankResponse != null)
+            {
+                _storage.SaveObject(paymentInfo.Response.Id, paymentInfo);
+            }
             return bankResponse;
         }
 
@@ -45,8 +48,10 @@ namespace CheckoutPaymentGateway.BL
         public PaymentInfo RetrievePaymentInfo(Guid id)
         {
             var paymentInfo = _storage.GetObject(id) as PaymentInfo;
-            paymentInfo?.Request.MaskCardNumber();
-
+            if (paymentInfo != null)
+            {
+                paymentInfo.Request.CardNumber = paymentInfo.Request.MaskCardNumber();
+            }
             return paymentInfo;
         }
     }

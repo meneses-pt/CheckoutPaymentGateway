@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using CheckoutPaymentGateway.Enums;
 using CheckoutPaymentGateway.Interfaces;
 using CheckoutPaymentGateway.Models;
@@ -20,6 +21,11 @@ namespace CheckoutPaymentGateway.Mock
         /// </returns>
         public IPaymentResponse ProcessPayment(PaymentRequest request)
         {
+            if (request == null)
+            {
+                return null;
+            }
+
             var response = new PaymentResponse {Id = Guid.NewGuid()};
 
             if (string.IsNullOrEmpty(request.CVV) ||
@@ -27,12 +33,41 @@ namespace CheckoutPaymentGateway.Mock
                 string.IsNullOrEmpty(request.CardHolderName) ||
                 string.IsNullOrEmpty(request.CardHolderName) ||
                 string.IsNullOrEmpty(request.Currency) ||
-                string.IsNullOrEmpty(request.ExpiryDate))
+                string.IsNullOrEmpty(request.ExpiryDate) ||
+                request.Amount <= 0 ||
+                request.CardNumber.Length != 16 ||
+                request.Currency.Length != 3)
             {
                 response.Status = Status.Declined;
+                return response;
             }
 
-            response.Status = Status.Authorized;
+            var expiryDateSplit = request.ExpiryDate.Split("/");
+            if (expiryDateSplit.Length != 2)
+            {
+                response.Status = Status.Declined;
+                return response;
+            }
+
+            if (!int.TryParse(expiryDateSplit[0], out var month))
+            {
+                response.Status = Status.Declined;
+                return response;
+            }
+
+            if (!int.TryParse(expiryDateSplit[1], out var year))
+            {
+                response.Status = Status.Declined;
+                return response;
+            }
+
+            var expiryDate = new DateTime(year + 2000, month, 1).AddMonths(1).AddDays(-1);
+            if(DateTime.Today > expiryDate.Date)
+            {
+                response.Status = Status.Expired;
+                return response;
+            }
+            
             return response;
         }
     }

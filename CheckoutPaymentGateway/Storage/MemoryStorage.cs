@@ -13,30 +13,30 @@ namespace CheckoutPaymentGateway.Storage
         /// <summary>
         /// The storage object that will hold the information
         /// </summary>
-        public Dictionary<Guid, object> StorageObject = new Dictionary<Guid, object>();
+        private readonly Dictionary<Guid, object> _storageObject = new Dictionary<Guid, object>();
 
         /// <inheritdoc />
         public void SaveObject(Guid id, object objectToSave)
         {
-            if (StorageObject.ContainsKey(id))
+            if (_storageObject.ContainsKey(id))
             {
-                StorageObject[id] = objectToSave;
+                _storageObject[id] = objectToSave;
             }
             else
             {
-                StorageObject.Add(id, objectToSave);
+                _storageObject.Add(id, objectToSave);
             }
         }
 
         /// <inheritdoc />
         public object GetObject(Guid id)
         {
-            if (!StorageObject.ContainsKey(id))
+            if (!_storageObject.ContainsKey(id))
             {
                 return null;
             }
 
-            return StorageObject[id];
+            return _storageObject[id];
         }
     }
 }
