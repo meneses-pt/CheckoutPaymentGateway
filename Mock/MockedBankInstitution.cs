@@ -5,8 +5,19 @@ using CheckoutPaymentGateway.Models;
 
 namespace CheckoutPaymentGateway.Mock
 {
+    /// <summary>
+    /// The Implementation of a Mock Bank Institution
+    /// </summary>
+    /// <seealso cref="CheckoutPaymentGateway.Interfaces.IBank" />
     public class MockedBankInstitution : IBank
     {
+        /// <summary>
+        /// Mock Processes the payment request.
+        /// </summary>
+        /// <param name="request">The payment request.</param>
+        /// <returns>
+        /// A Payment Response
+        /// </returns>
         public IPaymentResponse ProcessPayment(PaymentRequest request)
         {
             var response = new PaymentResponse {Id = Guid.NewGuid()};

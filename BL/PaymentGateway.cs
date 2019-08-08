@@ -1,21 +1,34 @@
 ﻿using System;
 using CheckoutPaymentGateway.Interfaces;
 using CheckoutPaymentGateway.Models;
-using Microsoft.AspNetCore.Identity.UI.Pages.Internal.Account.Manage;
 
 namespace CheckoutPaymentGateway.BL
 {
+    /// <summary>
+    /// Business Logic for the Payment Gateway
+    /// </summary>
+    /// <seealso cref="CheckoutPaymentGateway.Interfaces.IPaymentGateway" />
     public class PaymentGateway : IPaymentGateway
     {
         private readonly IBank _bank;
         private readonly IStorage _storage;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PaymentGateway"/> class.
+        /// </summary>
+        /// <param name="bank">The bank instance.</param>
+        /// <param name="storage">The storage instance.</param>
         public PaymentGateway(IBank bank, IStorage storage)
         {
             _bank = bank;
             _storage = storage;
         }
 
+        /// <summary>
+        /// Processes the payment and saves the Payment Information.
+        /// </summary>
+        /// <param name="request">The Payment Request.</param>
+        /// <returns>A Payment Response</returns>
         public IPaymentResponse ProcessPayment(PaymentRequest request)
         {
             var bankResponse = _bank.ProcessPayment(request);
@@ -24,7 +37,12 @@ namespace CheckoutPaymentGateway.BL
             return bankResponse;
         }
 
-        public PaymentInfo RetrievePayamentInfo(Guid id)
+        /// <summary>
+        /// Retrieves the payament information.
+        /// </summary>
+        /// <param name="id">The payment information identifier.</param>
+        /// <returns>The payment information with the masked card number.</returns>
+        public PaymentInfo RetrievePaymentInfo(Guid id)
         {
             var paymentInfo = _storage.GetObject(id) as PaymentInfo;
             paymentInfo?.Request.MaskCardNumber();
