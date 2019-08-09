@@ -26,7 +26,9 @@ namespace CheckoutPaymentGateway
 
             services.AddScoped<IPaymentGateway, PaymentGateway>();
             services.AddScoped<IBank, MockedBankInstitution>();
-            services.AddSingleton<IStorage, MemoryStorage>();
+            
+            //services.AddSingleton<IStorage, MemoryStorage>();
+            services.AddSingleton<IStorage, Storage.DataStorage>(_ => new Storage.DataStorage(Configuration["DbConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

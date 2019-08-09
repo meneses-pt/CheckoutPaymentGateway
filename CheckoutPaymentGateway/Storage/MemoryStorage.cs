@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CheckoutPaymentGateway.Interfaces;
+using CheckoutPaymentGateway.Models.Models;
 
 namespace CheckoutPaymentGateway.Storage
 {
@@ -16,27 +17,27 @@ namespace CheckoutPaymentGateway.Storage
         private readonly Dictionary<Guid, object> _storageObject = new Dictionary<Guid, object>();
 
         /// <inheritdoc />
-        public void SaveObject(Guid id, object objectToSave)
+        public void SavePaymentInfo(PaymentInfo objectToSave)
         {
-            if (_storageObject.ContainsKey(id))
+            if (_storageObject.ContainsKey(objectToSave.Response.Id))
             {
-                _storageObject[id] = objectToSave;
+                _storageObject[objectToSave.Response.Id] = objectToSave;
             }
             else
             {
-                _storageObject.Add(id, objectToSave);
+                _storageObject.Add(objectToSave.Response.Id, objectToSave);
             }
         }
 
         /// <inheritdoc />
-        public object GetObject(Guid id)
+        public PaymentInfo GetPaymentInfo(Guid id)
         {
             if (!_storageObject.ContainsKey(id))
             {
                 return null;
             }
 
-            return _storageObject[id];
+            return _storageObject[id] as PaymentInfo;
         }
     }
 }

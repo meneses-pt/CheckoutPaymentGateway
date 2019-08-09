@@ -1,4 +1,5 @@
 ﻿using System;
+using CheckoutPaymentGateway.Models.Models;
 
 namespace CheckoutPaymentGateway.Interfaces
 {
@@ -10,15 +11,14 @@ namespace CheckoutPaymentGateway.Interfaces
         /// <summary>
         /// Saves an object.
         /// </summary>
-        /// <param name="id">The object identifier.</param>
         /// <param name="objectToSave">The object to save.</param>
-        void SaveObject(Guid id, object objectToSave);
+        void SavePaymentInfo(PaymentInfo objectToSave);
 
         /// <summary>
         /// Gets the saved object.
         /// </summary>
-        /// <param name="id">The object identifier.</param>
+        /// <param name="id">The Payment Info identifier.</param>
         /// <returns>The saved object</returns>
-        object GetObject(Guid id);
+        PaymentInfo GetPaymentInfo(Guid id);
     }
 }

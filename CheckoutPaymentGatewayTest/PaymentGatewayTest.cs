@@ -1,8 +1,8 @@
 using System;
 using CheckoutPaymentGateway.BL;
-using CheckoutPaymentGateway.Enums;
 using CheckoutPaymentGateway.Mock;
-using CheckoutPaymentGateway.Models;
+using CheckoutPaymentGateway.Models.Enums;
+using CheckoutPaymentGateway.Models.Models;
 using CheckoutPaymentGateway.Storage;
 using Xunit;
 

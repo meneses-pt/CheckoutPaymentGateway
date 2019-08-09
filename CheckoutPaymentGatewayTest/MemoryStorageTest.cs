@@ -1,5 +1,6 @@
 using System;
-using CheckoutPaymentGateway.Models;
+using CheckoutPaymentGateway.Models.Enums;
+using CheckoutPaymentGateway.Models.Models;
 using CheckoutPaymentGateway.Storage;
 using Xunit;
 
@@ -23,18 +24,25 @@ namespace CheckoutPaymentGatewayTest
                 CVV = "123"
             };
 
+            var paymentResponse = new PaymentResponse
+            {
+                Id = Guid.NewGuid(),
+                Status = Status.Authorized
+            };
+
+            var paymentInfo = new PaymentInfo(paymentRequest, paymentResponse);
+
             var memoryStorage = new MemoryStorage();
             var id = Guid.NewGuid();
 
-            memoryStorage.SaveObject(id, paymentRequest);
-            var returnedObject = memoryStorage.GetObject(id);
+            memoryStorage.SavePaymentInfo(paymentInfo);
+            var returnedObject = memoryStorage.GetPaymentInfo(id);
 
-            Assert.Equal(paymentRequest.CardHolderName, ((PaymentRequest)returnedObject).CardHolderName);
+            Assert.Equal(paymentRequest.CardHolderName, returnedObject.Request.CardHolderName);
 
-            var nullObject = memoryStorage.GetObject(Guid.NewGuid());
-            
+            var nullObject = memoryStorage.GetPaymentInfo(Guid.NewGuid());
+
             Assert.Null(nullObject);
-
         }
     }
 }

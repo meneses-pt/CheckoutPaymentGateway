@@ -1,4 +1,4 @@
-﻿using CheckoutPaymentGateway.Models;
+﻿using CheckoutPaymentGateway.Models.Models;
 
 namespace CheckoutPaymentGateway.Interfaces
 {
@@ -12,6 +12,6 @@ namespace CheckoutPaymentGateway.Interfaces
         /// </summary>
         /// <param name="request">The payment request.</param>
         /// <returns>A Payment Response</returns>
-        IPaymentResponse ProcessPayment(PaymentRequest request);
+        PaymentResponse ProcessPayment(PaymentRequest request);
     }
 }

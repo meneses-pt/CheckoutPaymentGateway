@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Globalization;
-using CheckoutPaymentGateway.Enums;
 using CheckoutPaymentGateway.Interfaces;
-using CheckoutPaymentGateway.Models;
+using CheckoutPaymentGateway.Models.Enums;
+using CheckoutPaymentGateway.Models.Models;
 
 namespace CheckoutPaymentGateway.Mock
 {
@@ -19,7 +18,7 @@ namespace CheckoutPaymentGateway.Mock
         /// <returns>
         /// A Payment Response
         /// </returns>
-        public IPaymentResponse ProcessPayment(PaymentRequest request)
+        public PaymentResponse ProcessPayment(PaymentRequest request)
         {
             if (request == null)
             {
@@ -62,12 +61,12 @@ namespace CheckoutPaymentGateway.Mock
             }
 
             var expiryDate = new DateTime(year + 2000, month, 1).AddMonths(1).AddDays(-1);
-            if(DateTime.Today > expiryDate.Date)
+            if (DateTime.Today > expiryDate.Date)
             {
                 response.Status = Status.Expired;
                 return response;
             }
-            
+
             return response;
         }
     }

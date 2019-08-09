@@ -1,6 +1,6 @@
 ﻿using System;
 using CheckoutPaymentGateway.Interfaces;
-using CheckoutPaymentGateway.Models;
+using CheckoutPaymentGateway.Models.Models;
 
 namespace CheckoutPaymentGateway.BL
 {
@@ -29,14 +29,15 @@ namespace CheckoutPaymentGateway.BL
         /// </summary>
         /// <param name="request">The Payment Request.</param>
         /// <returns>A Payment Response</returns>
-        public IPaymentResponse ProcessPayment(PaymentRequest request)
+        public PaymentResponse ProcessPayment(PaymentRequest request)
         {
             var bankResponse = _bank.ProcessPayment(request);
             var paymentInfo = new PaymentInfo(request, bankResponse);
             if (bankResponse != null)
             {
-                _storage.SaveObject(paymentInfo.Response.Id, paymentInfo);
+                _storage.SavePaymentInfo(paymentInfo);
             }
+
             return bankResponse;
         }
 
@@ -47,11 +48,12 @@ namespace CheckoutPaymentGateway.BL
         /// <returns>The payment information with the masked card number.</returns>
         public PaymentInfo RetrievePaymentInfo(Guid id)
         {
-            var paymentInfo = _storage.GetObject(id) as PaymentInfo;
+            var paymentInfo = _storage.GetPaymentInfo(id);
             if (paymentInfo != null)
             {
                 paymentInfo.Request.CardNumber = paymentInfo.Request.MaskCardNumber();
             }
+
             return paymentInfo;
         }
     }

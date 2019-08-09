@@ -1,9 +1,13 @@
-﻿namespace CheckoutPaymentGateway.Interfaces
+﻿using System.Text.RegularExpressions;
+using Microsoft.EntityFrameworkCore;
+
+namespace CheckoutPaymentGateway.Models.Models
 {
     /// <summary>
-    /// The Payment Request Structure Interface
+    /// An implementation of the Payment Request structure
     /// </summary>
-    public interface IPaymentRequest
+    [Owned]
+    public class PaymentRequest
     {
         /// <summary>
         /// Gets or sets the credit card number.
@@ -11,7 +15,7 @@
         /// <value>
         /// The credit card number.
         /// </value>
-        string CardNumber { get; set; }
+        public string CardNumber { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the credit card holder.
@@ -19,7 +23,7 @@
         /// <value>
         /// The name of the credit card holder.
         /// </value>
-        string CardHolderName { get; set; }
+        public string CardHolderName { get; set; }
 
         /// <summary>
         /// Gets or sets the expiry date for the credit card.
@@ -27,7 +31,7 @@
         /// <value>
         /// The expiry date of the credit card.
         /// </value>
-        string ExpiryDate { get; set; }
+        public string ExpiryDate { get; set; }
 
         /// <summary>
         /// Gets or sets the amount to be charged on the payment.
@@ -35,7 +39,7 @@
         /// <value>
         /// The amount to be charged on the payment.
         /// </value>
-        double Amount { get; set; }
+        public double Amount { get; set; }
 
         /// <summary>
         /// Gets or sets the currency for the payment.
@@ -43,7 +47,7 @@
         /// <value>
         /// The currency for the payment.
         /// </value>
-        string Currency { get; set; }
+        public string Currency { get; set; }
 
         /// <summary>
         /// Gets or sets the CVV code of the credit card.
@@ -51,11 +55,28 @@
         /// <value>
         /// The CVV code of the credit card.
         /// </value>
-        string CVV { get; set; }
+        public string CVV { get; set; }
 
         /// <summary>
         /// Masks the credit card number.
         /// </summary>
-        string MaskCardNumber();
+        public string MaskCardNumber()
+        {
+            if (CardNumber == null)
+            {
+                return null;
+            }
+
+            if (CardNumber.Length <= 4)
+            {
+                return Regex.Replace(CardNumber, "\\d", "*");
+            }
+
+            return Regex.Replace(
+                       CardNumber.Substring(0, CardNumber.Length - 4),
+                       "\\d",
+                       "*") +
+                   CardNumber.Substring(CardNumber.Length - 4, 4);
+        }
     }
 }

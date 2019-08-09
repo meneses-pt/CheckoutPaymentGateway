@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net;
 using CheckoutPaymentGateway.Interfaces;
-using CheckoutPaymentGateway.Models;
+using CheckoutPaymentGateway.Models.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CheckoutPaymentGateway.Controllers
