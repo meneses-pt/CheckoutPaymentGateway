@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CheckoutPaymentGateway.Authentication
 {
+    /// <summary>
+    /// Class to hold Scope Requirements
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Authorization.IAuthorizationRequirement" />
     public class HasScopeRequirement : IAuthorizationRequirement
     {
         public string Issuer { get; }

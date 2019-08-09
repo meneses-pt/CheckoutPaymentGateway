@@ -22,6 +22,7 @@ namespace CheckoutPaymentGateway.Controllers
 
         /// <summary>Initializes a new instance of the <see cref="PaymentGatewayController"/> class.</summary>
         /// <param name="paymentGateway">The payment gateway.</param>
+        /// <param name="logger">The logger instance</param>
         public PaymentGatewayController(IPaymentGateway paymentGateway, ILogger<PaymentGatewayController> logger)
         {
             _paymentGateway = paymentGateway;

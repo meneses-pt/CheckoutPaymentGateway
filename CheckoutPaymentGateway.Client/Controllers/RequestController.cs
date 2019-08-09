@@ -10,21 +10,41 @@ using Newtonsoft.Json;
 
 namespace CheckoutPaymentGateway.Client.Controllers
 {
+    /// <summary>
+    /// The Request Controller
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Mvc.Controller" />
     [Route("[controller]")]
     public class RequestController : Controller
     {
+        /// <summary>
+        /// The configuration object
+        /// </summary>
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RequestController"/> class.
+        /// </summary>
+        /// <param name="configuration">The configuration object.</param>
         public RequestController(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Displays the Index for the Configuration Controller.
+        /// </summary>
+        /// <returns>The View</returns>
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Submits the specified payment request.
+        /// </summary>
+        /// <param name="paymentRequest">The payment request.</param>
+        /// <returns>The View with the Payment Response</returns>
         [HttpPost("Submit")]
         public async Task<IActionResult> Submit(PaymentRequest paymentRequest)
         {

@@ -4,6 +4,10 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace CheckoutPaymentGateway.Authentication
 {
+    /// <summary>
+    /// Class to check scope requirements
+    /// </summary>
+    /// <seealso cref="Microsoft.AspNetCore.Authorization.AuthorizationHandler{CheckoutPaymentGateway.Authentication.HasScopeRequirement}" />
     public class HasScopeHandler : AuthorizationHandler<HasScopeRequirement>
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, HasScopeRequirement requirement)

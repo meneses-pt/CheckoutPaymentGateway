@@ -41,6 +41,7 @@ namespace CheckoutPaymentGateway.Models.Models
                 {
                     Response = new PaymentResponse();
                 }
+
                 Response.Id = value;
             }
         }

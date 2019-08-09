@@ -3,8 +3,15 @@ using RestSharp;
 
 namespace CheckoutPaymentGateway.Client.Helpers
 {
+    /// <summary>
+    /// A class to help the authentication process with Auth0
+    /// </summary>
     public class AuthenticationHelper
     {
+        /// <summary>
+        /// Gets the access token using the configured client Id and Secret.
+        /// </summary>
+        /// <returns>The Access Token</returns>
         public static string GetAccessToken()
         {
             var client = new RestClient(Startup.StaticConfig["Auth0:AuthenticationUrl"]);

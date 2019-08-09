@@ -63,6 +63,8 @@ An initial solution was made saving the Payments Information in a memory object.
 The API easily permits that another storage type (implementing the same Interface) can be used.
 Having this in consideration, a simple database structure was created and the data is saved and retrieved using EntityFramework.
 
+You most likely won't be able to connect to the database with the current configuration as your IP is probably blocked. If you need me to unblock a specific IP/Range please feel free to contact me.
+
 ### Another considerations
 
 There is not a lot of data validation, either on the API and in the client because I thought that was not the main purpose. I focused more in trying to build a flexible and scalable solution where changes and improvements can be easily made.
