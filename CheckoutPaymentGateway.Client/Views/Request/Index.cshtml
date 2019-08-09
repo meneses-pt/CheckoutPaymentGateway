@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Request Payment";
+}
+@using (Html.BeginForm("Submit", "Request", FormMethod.Post, new { enctype = "application/json" }))
+{
+
+    if (ViewBag.Response != null)
+    {
+        if (ViewBag.Response is string)
+        {
+            <br />
+            @Html.Label("Response")
+            <br />
+            @ViewBag.Response
+        }
+        else
+        {
+            <br />
+            @Html.Label("Id")
+            <br />
+            @ViewBag.Response.Id
+
+            <br />
+            <br />
+            @Html.Label("Status")
+            <br />
+            @ViewBag.Response.Status
+        }
+
+    }
+    else
+    {
+        @Html.ValidationSummary(true);
+        <br />
+        @Html.Label("Card Number")
+        @Html.TextBox("CardNumber", null, new { @class = "form-control" })
+
+        <br />
+        @Html.Label("Card Holder Name")
+        @Html.TextBox("CardHolderName", null, new { @class = "form-control" })
+
+        <br />
+        @Html.Label("Expiry Date")
+        @Html.TextBox("ExpiryDate", null, new { @class = "form-control" })
+
+        <br />
+        @Html.Label("Amount")
+        @Html.TextBox("Amount", null, new { @class = "form-control", type = "number", step = "0.01", lang="en-150"})
+
+        <br />
+        @Html.Label("Currency")
+        @Html.TextBox("Currency", null, new { @class = "form-control" })
+
+        <br />
+        @Html.Label("CVV")
+        @Html.TextBox("CVV", null, new { @class = "form-control" })
+
+        <br />
+        <input type="submit" value="Submit the payment" />
+    }
+
+} 

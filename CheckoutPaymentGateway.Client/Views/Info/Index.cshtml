@@ -1,0 +1,71 @@
+﻿@{
+    ViewData["Title"] = "Request Information Page";
+}
+@using (Html.BeginForm("Submit", "Info", FormMethod.Post, new { enctype = "application/json" }))
+{
+
+    if (ViewBag.Response != null)
+    {
+        if (ViewBag.Response is string)
+        {
+            <br />
+            @Html.Label("Response")
+            <br />
+            @ViewBag.Response
+        }
+        else
+        {
+            <br />
+            @Html.Label("Id")
+            <br />
+            @ViewBag.Response.Response.Id
+
+            <br />
+            @Html.Label("Status")
+            <br />
+            @ViewBag.Response.Response.Status
+
+            <br />
+            @Html.Label("Card Number")
+            <br />
+            @ViewBag.Response.Request.CardNumber
+
+            <br />
+            @Html.Label("Card Holder Name")
+            <br />
+            @ViewBag.Response.Request.CardHolderName
+
+            <br />
+            @Html.Label("ExpiryDate")
+            <br />
+            @ViewBag.Response.Request.ExpiryDate
+
+            <br />
+            @Html.Label("Amount")
+            <br />
+            @ViewBag.Response.Request.Amount
+
+            <br />
+            @Html.Label("Currency")
+            <br />
+            @ViewBag.Response.Request.Currency
+
+            <br />
+            @Html.Label("CVV")
+            <br />
+            @ViewBag.Response.Request.CVV
+        }
+
+    }
+    else
+    {
+        @Html.ValidationSummary(true);
+        <br />
+        @Html.Label("Payment Request Id")
+        @Html.TextBox("PaymentId", null, new { @class = "form-control" })
+
+        <br />
+        <input type="submit" value="Submit the payment" />
+    }
+
+} 
