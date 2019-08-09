@@ -33,10 +33,9 @@ namespace CheckoutPaymentGatewayTest
             var paymentInfo = new PaymentInfo(paymentRequest, paymentResponse);
 
             var memoryStorage = new MemoryStorage();
-            var id = Guid.NewGuid();
 
             memoryStorage.SavePaymentInfo(paymentInfo);
-            var returnedObject = memoryStorage.GetPaymentInfo(id);
+            var returnedObject = memoryStorage.GetPaymentInfo(paymentResponse.Id);
 
             Assert.Equal(paymentRequest.CardHolderName, returnedObject.Request.CardHolderName);
 
