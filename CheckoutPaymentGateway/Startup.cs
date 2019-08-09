@@ -1,7 +1,10 @@
-﻿using CheckoutPaymentGateway.BL;
+﻿using CheckoutPaymentGateway.Authentication;
+using CheckoutPaymentGateway.BL;
 using CheckoutPaymentGateway.Interfaces;
 using CheckoutPaymentGateway.Mock;
 using CheckoutPaymentGateway.Storage;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -24,6 +27,27 @@ namespace CheckoutPaymentGateway
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
+
+            var domain = $"https://{Configuration["Auth0:Domain"]}/";
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.Authority = domain;
+                options.Audience = Configuration["Auth0:ApiIdentifier"];
+            });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("read:transactions", policy => policy.Requirements.Add(new HasScopeRequirement("read:transactions", domain)));
+                options.AddPolicy("request:transactions", policy => policy.Requirements.Add(new HasScopeRequirement("request:transactions", domain)));
+            });
+
+            // register the scope authorization handler
+            services.AddSingleton<IAuthorizationHandler, HasScopeHandler>();
+
+
             services.AddScoped<IPaymentGateway, PaymentGateway>();
             services.AddScoped<IBank, MockedBankInstitution>();
             
@@ -42,6 +66,8 @@ namespace CheckoutPaymentGateway
             {
                 app.UseHsts();
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
             app.UseMvc();

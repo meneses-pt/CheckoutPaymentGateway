@@ -2,6 +2,7 @@
 using System.Net;
 using CheckoutPaymentGateway.Interfaces;
 using CheckoutPaymentGateway.Models.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CheckoutPaymentGateway.Controllers
@@ -27,6 +28,7 @@ namespace CheckoutPaymentGateway.Controllers
         /// <param name="id">The Payment Request Identifier.</param>
         /// <returns>The Payment Request</returns>
         [HttpGet("{id}")]
+        [Authorize("read:transactions")]
         public ActionResult Get(Guid id)
         {
             try
@@ -51,6 +53,7 @@ namespace CheckoutPaymentGateway.Controllers
         /// <param name="request">The Payment Request data.</param>
         /// <returns>A Payment Response with its Identifier and Status</returns>
         [HttpPost]
+        [Authorize("request:transactions")]
         public ActionResult Post([FromBody] PaymentRequest request)
         {
             try
