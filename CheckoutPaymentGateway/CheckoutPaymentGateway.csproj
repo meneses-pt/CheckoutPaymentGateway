@@ -12,11 +12,19 @@
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NLog" Version="4.6.6" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.8.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CheckoutPaymentGateway.DataStorage\CheckoutPaymentGateway.DataStorage.csproj" />
     <ProjectReference Include="..\CheckoutPaymentGateway.Models\CheckoutPaymentGateway.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

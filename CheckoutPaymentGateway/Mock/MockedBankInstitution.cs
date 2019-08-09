@@ -2,6 +2,7 @@
 using CheckoutPaymentGateway.Interfaces;
 using CheckoutPaymentGateway.Models.Enums;
 using CheckoutPaymentGateway.Models.Models;
+using NLog;
 
 namespace CheckoutPaymentGateway.Mock
 {
@@ -11,6 +12,8 @@ namespace CheckoutPaymentGateway.Mock
     /// <seealso cref="CheckoutPaymentGateway.Interfaces.IBank" />
     public class MockedBankInstitution : IBank
     {
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+
         /// <summary>
         /// Mock Processes the payment request.
         /// </summary>
@@ -20,6 +23,8 @@ namespace CheckoutPaymentGateway.Mock
         /// </returns>
         public PaymentResponse ProcessPayment(PaymentRequest request)
         {
+            _logger.Log(LogLevel.Info, "Payment Request received");
+
             if (request == null)
             {
                 return null;

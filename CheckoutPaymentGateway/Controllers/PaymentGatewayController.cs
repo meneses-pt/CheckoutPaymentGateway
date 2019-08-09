@@ -4,6 +4,7 @@ using CheckoutPaymentGateway.Interfaces;
 using CheckoutPaymentGateway.Models.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace CheckoutPaymentGateway.Controllers
 {
@@ -16,6 +17,8 @@ namespace CheckoutPaymentGateway.Controllers
     public class PaymentGatewayController : ControllerBase
     {
         private readonly IPaymentGateway _paymentGateway;
+
+        private readonly ILogger<PaymentGatewayController> _logger;
 
         /// <summary>Initializes a new instance of the <see cref="PaymentGatewayController"/> class.</summary>
         /// <param name="paymentGateway">The payment gateway.</param>
@@ -41,8 +44,9 @@ namespace CheckoutPaymentGateway.Controllers
 
                 return StatusCode((int) HttpStatusCode.OK, response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError("Error getting Payment Information", ex);
                 return StatusCode((int) HttpStatusCode.BadRequest);
             }
         }
@@ -66,8 +70,9 @@ namespace CheckoutPaymentGateway.Controllers
 
                 return StatusCode((int) HttpStatusCode.OK, response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError("Error Processing Payment", ex);
                 return StatusCode((int) HttpStatusCode.BadRequest);
             }
         }
