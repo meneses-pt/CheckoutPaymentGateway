@@ -12,14 +12,14 @@ You can go to `https://localhost:44388/index.html` to see automatically generate
 
 ## Extra Miles Bonus Points
 
-###Application Logging
+### Application Logging
 
 I used the NLog component to write application logs.
 The application is configured to log to a file, but it can easily be changed using the `nlog.config` file
 
 There are some specific logs that were made, for example when the methods in the Controllers raise an exception.
 
-###Authentication
+### Authentication
 
 I integrated the application with the Auth0 platform for authentication purposes.
 There is a sample application created there, so that you can get an Access Token to make the requests to the API.
@@ -36,7 +36,7 @@ curl --request POST \
 You can then use the obtained Access Token and pass it as a `Bearer` to access the API.
 I set two roles: one for making payment requests and another for getting its information. This Access Token will grant you permission for both of them.
 
-###API Client
+### API Client
 I have made a very simple API Client to make requests to the API.
 Using the Auth0 created client, it gets an Access Token for each Request to the API.
 
@@ -45,7 +45,7 @@ There are two endpoints you can use:
 - `https://localhost:44390/Info`
 - `https://localhost:44390/Request`
 
-###Build Script/CI
+### Build Script/CI
 
 In the folder Scripts you will find three scripts:
 
@@ -53,17 +53,17 @@ In the folder Scripts you will find three scripts:
 - `test_solution.ps1`: Runs the Unit Tests of the solution
 - `run_update_db.ps1`: Receives an SQL Server Database Connection String and runs all the DB Scripts (creating or updating the database structure)
 
-###Encryption
+### Encryption
 
 The API is configured to use HTTPS which will encrypt the communication between the client and the API
 
-###Data Storage
+### Data Storage
 
 An initial solution was made saving the Payments Information in a memory object.
 The API easily permits that another storage type (implementing the same Interface) can be used.
 Having this in consideration, a simple database structure was created and the data is saved and retrieved using EntityFramework.
 
-###Another considerations
+### Another considerations
 
 There is not a lot of data validation, either on the API and in the client because I thought that was not the main purpose. I focused more in trying to build a flexible and scalable solution where changes and improvements can be easily made.
 Please feel free to contact me if you have any questions.
